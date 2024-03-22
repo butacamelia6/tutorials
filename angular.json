@@ -22,13 +22,12 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets", 
+              "src/assets",
               {
                 "input": "node_modules/@ffmpeg/core/dist/esm",
                 "output": "node_modules/@ffmpeg/core/dist/esm",
                 "glob": "*"
               }
-
             ],
             "styles": [
               "src/styles.css"
@@ -37,19 +36,18 @@
           },
           "configurations": {
             "production": {
-              
-                "budgets": [
-                  {
-                    "type": "initial",
-                    "maximumWarning": "10mb",
-                    "maximumError": "10mb"
-                  },
-                  {
-                    "type": "anyComponentStyle",
-                    "maximumWarning": "52kb",
-                    "maximumError": "52kb"
-                  }
-                ],
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "10mb",
+                  "maximumError": "10mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "52kb",
+                  "maximumError": "52kb"
+                }
+              ],
               "outputHashing": "all"
             },
             "development": {
@@ -108,13 +106,63 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "karmaConfig": "karma.conf.js"
+          }
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "tutorials:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "tutorials:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "watch": true,
+            "headless": false
+          }
+        },
+        "ct": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "tutorials:serve",
+            "watch": true,
+            "headless": false,
+            "testingType": "component"
+          },
+          "configurations": {
+            "development": {
+              "devServerTarget": "tutorials:serve:development"
+            }
+          }
+        },
+        "e2e": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "tutorials:serve",
+            "watch": true,
+            "headless": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "tutorials:serve:production"
+            }
           }
         }
       }
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": false,
+    "schematicCollections": [
+      "@cypress/schematic",
+      "@schematics/angular"
+    ]
   }
 }
