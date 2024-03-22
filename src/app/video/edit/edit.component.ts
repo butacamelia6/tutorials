@@ -75,6 +75,7 @@ export class EditComponent implements OnInit, OnDestroy, OnChanges {
       this.alertColor = 'red';
       this.alertMsg = 'Something went wrong. Please try again later.';
       this.inSubmission = false;
+
       return;
     }
     this.activeClip.title = this.title.value;
